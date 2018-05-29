@@ -1,9 +1,19 @@
 {
   "name": "poly-eos",
-  "description": "Polymer 3 component for eos.js",
+  "version": "1.0.1",
+  "description": "Polymer 3 component for eos",
   "main": "poly-eos.js",
+  "licence": "MIT",
+  "keywords": [
+    "Blockchain",
+    "EOS",
+    "EOS Polymer",
+    "EOS Webcomponent",
+    "Polymer Webcomponent EOS"
+  ],
   "dependencies": {
-    "@polymer/polymer": "^3.0.0"
+    "@polymer/polymer": "^3.0.0",
+    "eosjs": "^13.0.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",

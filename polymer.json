@@ -1,5 +1,8 @@
 {
   "npm": true,
+  "extraDependencies": [
+    "eos.js"
+  ],
   "lint": {
     "rules": [
       "polymer-3"

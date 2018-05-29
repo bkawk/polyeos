@@ -22,12 +22,35 @@
   </head>
   <body>
     <div class="vertical-section-container centered">
-      <h3>Basic poly-eos demo</h3>
+      <h3>Block Number Demo</h3>
       <demo-snippet>
         <template>
-          <poly-eos></poly-eos>
+          <poly-eos debug block-number=10 data="{{block}}"></poly-eos>
         </template>
       </demo-snippet>
     </div>
+    <div class="vertical-section-container centered">
+      <h3>Info Demo</h3>
+      <demo-snippet>
+        <template>
+          <poly-eos debug info data="{{info}}"></poly-eos>
+        </template>
+      </demo-snippet>
+    </div>
+    <div class="vertical-section-container centered">
+        <h3>Config Demo</h3>
+        <demo-snippet>
+          <template>
+            <poly-eos debug info config="{
+              keyProvider: "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3", 
+              httpEndpoint: "http://13.71.191.137:8889",
+              broadcast: true,
+              sign: true,
+              chainId: "a628a5a6123d6ed60242560f23354c557f4a02826e223bb38aad79ddeb9afbca",
+              expireInSeconds: 30
+            }"></poly-eos>
+          </template>
+        </demo-snippet>
+      </div>
   </body>
 </html>
