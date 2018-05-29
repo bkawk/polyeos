@@ -80,30 +80,28 @@ class PolyEos extends PolymerElement {
         notify: true,
         reflectToAttribute: true
       },
-      config: {
-        type: Object
+      keyProvider: {
+        type: String
+      },
+      httpEndpoint: {
+        type: String,
+        value: "http://13.71.191.137:8889"
+      },
+      chainId: {
+        type: String
       },
       error: {
         type: String
       },
     };
   }
-  constructor() {
-    super();
-    this.config = {
-      keyProvider: "5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3", 
-      httpEndpoint: "http://13.71.191.137:8889",
-      broadcast: true,
-      sign: true,
-      chainId: "a628a5a6123d6ed60242560f23354c557f4a02826e223bb38aad79ddeb9afbca",
-      expireInSeconds: 30
-    }
-    this.eos = Eos.Localnet(this.config)
-  }
 
   _blockNumber(blockNumber){
     return new Promise((resolve, reject) => {
-      this.eos.getBlock(blockNumber)
+      this._connect()
+      .then((block)=>{
+        return this.eos.getBlock(blockNumber)
+      })
       .then((block)=>{
         this.block = block;
         resolve(this.block);
@@ -117,7 +115,10 @@ class PolyEos extends PolymerElement {
 
   _info(){
     return new Promise((resolve, reject) => {
-      this.eos.getInfo({})
+      this._connect()
+      .then((block)=>{
+        return this.eos.getInfo({})
+      })
       .then((info)=>{
         this.info = info;
         resolve(this.info);
@@ -126,6 +127,21 @@ class PolyEos extends PolymerElement {
         this.error = error;
         reject(error);
       });
+    })
+  }
+
+  _connect(){
+    return new Promise((resolve, reject) => {
+      const config = {
+        keyProvider: this.keyProvider, 
+        httpEndpoint: this.httpEndpoint,
+        broadcast: true,
+        sign: true,
+        chainId: this.chainId,
+        expireInSeconds: 30
+      }
+      this.eos = Eos.Localnet(config)
+      resolve();
     })
   }
 
